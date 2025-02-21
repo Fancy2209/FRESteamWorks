@@ -1125,7 +1125,7 @@ void CSteam::CreateLobby(ELobbyType eLobbyType, int cMaxMembers)
 uint64 CSteam::GetCurrentLobbySteamID() {
 	if (!m_bInitialized) return 0;
 
-	return m_iAppID;
+	return m_iSteamIDLobby;
 }
 
 void CSteam::DispatchEvent(const int req_type, const int response) {
