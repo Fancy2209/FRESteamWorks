@@ -187,9 +187,9 @@ package com.amanitadesign.steam {
 		/* Microtransaction */
 		/********************/
 		function microTxnResult():MicroTxnAuthorizationResponse
-		/********************/
+		/*********/
 		/* Input */
-		/********************/
+		/*********/
 		function inputInit():Boolean
 		function getControllerForGamepadIndex(index:int):String
 		function showBindingPanel(inputHandle:String):Boolean 
@@ -215,6 +215,11 @@ package com.amanitadesign.steam {
 		function showFloatingGamepadTextInput(eKeyboardMode:int, nTextFieldXPosition:int, nTextFieldYPosition:int, nTextFieldWidth:int, nTextFieldHeight:int):Boolean
 		function steamInputShutdown():Boolean
 		function dismissFloatingGamepadTextInput():Boolean
+		/***************/
+		/* Matchmaking */
+		/***************/
+		function createLobby(lobbyType:uint, maxMembers:int):Boolean
+		function getCurrentLobbySteamID():String
 		/**********************************/
 		/* Other non-Steamworks functions */
 		/**********************************/

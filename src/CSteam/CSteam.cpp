@@ -34,7 +34,8 @@ CSteam::CSteam():
 	m_OnValidateAuthTicketResponse(this, &CSteam::OnValidateAuthTicketResponse),
 	m_CallbackGameOverlayActivated(this, &CSteam::OnGameOverlayActivated),
 	m_CallbackDLCInstalled(this, &CSteam::OnDLCInstalled),
-	m_CallbackMicroTxnAuthorizationResponse(this, &CSteam::OnMicroTxnAuthorizationResponse)
+	m_CallbackMicroTxnAuthorizationResponse(this, &CSteam::OnMicroTxnAuthorizationResponse),
+	m_CallbackLobbyCreated(this, &CSteam::OnLobbyCreated)
 {
 }
 
@@ -1110,6 +1111,22 @@ bool CSteam::DismissFloatingGamepadTextInput(){
     return SteamUtils()->DismissFloatingGamepadTextInput();
 }
 
+// Matchmaking
+void CSteam::CreateLobby(ELobbyType eLobbyType, int cMaxMembers)
+{
+	if (!m_bInitialized) return false;
+
+	SteamAPICall_t result = ISteamMatchmaking()->CreateLobby(lobbyType, maxMembers);
+	m_CallbackLobbyCreated.Set(result, this, &CSteam::OnCreateLobbyResponse);
+
+	return true;
+}
+
+uint64 CSteam::GetCurrentLobbySteamID() {
+	if (!m_bInitialized) return 0;
+
+	return m_iAppID;
+}
 
 void CSteam::DispatchEvent(const int req_type, const int response) {
 	char type[5];
@@ -1296,6 +1313,11 @@ void CSteam::OnMicroTxnAuthorizationResponse(MicroTxnAuthorizationResponse_t *pC
 	if (m_iAppID != pCallback->m_unAppID) return;
 	m_MicroTxnResponses.push(*pCallback);
 	DispatchEvent(RESPONSE_OnMicroTxnAuthorizationResponse, pCallback->m_bAuthorized ? k_EResultOK : k_EResultFail);
+}
+
+void CSteam::OnLobbyCreated(LobbyCreated_t *pCallback) {
+	m_iSteamIDLobby = pCallback->m_ulSteamIDLobby
+	DispatchEvent(RESPONSE_OnLobbyCreated, pCallback->m_eResult)
 }
 
 /*

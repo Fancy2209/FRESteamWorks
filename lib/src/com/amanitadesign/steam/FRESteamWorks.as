@@ -668,9 +668,9 @@ package com.amanitadesign.steam {
 			return _ExtensionContext.call("AIRSteam_MicroTxnResult") as MicroTxnAuthorizationResponse;
 		}
 
-		/********************/
+		/*********/
 		/* Input */
-		/********************/
+		/*********/
 		public function inputInit():Boolean {
 			return _ExtensionContext.call("AIRSteam_InputInit") as Boolean;
 		}
@@ -751,6 +751,17 @@ package com.amanitadesign.steam {
 
 		public function dismissFloatingGamepadTextInput():Boolean {
 			return _ExtensionContext.call("AIRSteam_DismissFloatingGamepadTextInput") as Boolean;
+		}
+
+		/***************/
+		/* Matchmaking */
+		/***************/
+		public function createLobby(lobbyType:uint, maxMembers:int):Boolean {
+			return _ExtensionContext.call("AIRSteam_CreateLobby", lobbyType, maxMembers) as Boolean;
+		}
+
+		public function getCurrentLobbySteamID():String {
+			return _ExtensionContext.call("AIRSteam_GetCurrentLobbySteamID") as String;
 		}
 
 		/**********************************/

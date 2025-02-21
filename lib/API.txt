@@ -864,9 +864,9 @@ public function DLCInstalledResult():uint
 public function microTxnResult():MicroTxnAuthorizationResponse
 
 
-/********************/
+/*********/
 /* Input */
-/********************/
+/*********/
 
 // inputInit()
 // @default false
@@ -951,6 +951,17 @@ public function steamInputShutdown():Boolean
 // dismissFloatingGamepadTextInput()
 // @default false
 public function dismissFloatingGamepadTextInput():Boolean
+
+/***************/
+/* Matchmaking */
+/***************/
+// createLobby(lobbyType, maxMembers)
+// @default false
+public function createLobby(lobbyType:uint, maxMembers:int):Boolean
+
+// getCurrentLobbySteamID()
+// @default "0"
+public function getCurrentLobbySteamID():String
 
 /**********************************/
 /* Other non-Steamworks functions */

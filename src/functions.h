@@ -158,9 +158,9 @@ X(AIRSteam_DLCInstalledResult) /* = 126 */
 /* Microtransaction */
 /********************/
 X(AIRSteam_MicroTxnResult) /* = 127 */
-/********************/
+/*********/
 /* Input */
-/********************/
+/*********/
 X(AIRSteam_InputInit) /* = 128 */
 X(AIRSteam_GetControllerForGamepadIndex) /* = 129 */
 X(AIRSteam_ShowBindingPanel) /* = 130 */
@@ -182,9 +182,14 @@ X(AIRSteam_ShowGamepadTextInput) /* = 145 */
 X(AIRSteam_ShowFloatingGamepadTextInput) /* = 146 */
 X(AIRSteam_SteamInputShutdown) /* = 147 */
 X(AIRSteam_DismissFloatingGamepadTextInput) /* = 148 */
+/***************/
+/* Matchmaking */
+/***************/
+X(AIRSteam_CreateLobby) /* = 149 */
+X(AIRSteam_GetCurrentLobbySteamID) /* = 150 */
 /**********************************/
 /* Other non-Steamworks functions */
 /**********************************/
-X(AIRSteam_GetEnv) /* = 149 */
-X(AIRSteam_SetEnv) /* = 150 */
+X(AIRSteam_GetEnv) /* = 151 */
+X(AIRSteam_SetEnv) /* = 152 */
 /* END GENERATED CODE */

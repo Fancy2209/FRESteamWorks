@@ -1916,6 +1916,17 @@ AIR_FUNC(AIRSteam_DismissFloatingGamepadTextInput) {
 	return FREBool(g_Steam->DismissFloatingGamepadTextInput());
 }
 
+// matchmaking
+AIR_FUNC(AIRSteam_CreateLobby) {
+	ARG_CHECK(2, FREBool(false))
+	return true;
+}
+
+AIR_FUNC(AIRSteam_GetCurrentLobbySteamID) {
+	ARG_CHECK(0, FREUint64(0))
+	return FREGetUint64(g_Steam->GetCurrentLobbySteamID())
+}
+
 	//============================
 
 

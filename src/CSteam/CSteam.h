@@ -231,6 +231,12 @@ public:
     bool ShowFloatingGamepadTextInput(EFloatingGamepadTextInputMode eKeyboardMode, int nTextFieldXPosition, int nTextFieldYPosition, int nTextFieldWidth, int nTextFieldHeight);
     bool SteamInputShutdown();
     bool DismissFloatingGamepadTextInput();
+
+	// matchmaking
+	void CreateLobby(ELobbyType eLobbyType, int cMaxMembers);
+	uint64 GetCurrentLobbySteamID();
+
+	
     
 
 protected:
@@ -240,6 +246,8 @@ private:
 	// 	CSteamAPIContext m_ctx; // there is no longer a CSteamAPIContext
 	// Our current appId
 	uint32 m_iAppID;
+	// Our current Steam Lobby ID
+	uint64 m_iSteamIDLobby
 	bool m_bInitialized;
 
 	// the most recently received *Result
@@ -373,6 +381,9 @@ private:
 	// Microtransaction
 	STEAM_CALLBACK(CSteam, OnMicroTxnAuthorizationResponse, MicroTxnAuthorizationResponse_t,
 	               m_CallbackMicroTxnAuthorizationResponse);
+
+	// Match Making
+	STEAM_CALLRESULT(CSteam, OnLobbyCreated, LobbyCreated_t, m_CallbackLobbyCreated)
 
 #undef STEAM_CALLRESULT
 
