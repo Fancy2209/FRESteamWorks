@@ -1117,7 +1117,7 @@ void CSteam::CreateLobby(ELobbyType eLobbyType, int cMaxMembers)
 	if (!m_bInitialized) return false;
 
 	SteamAPICall_t result = ISteamMatchmaking()->CreateLobby(lobbyType, maxMembers);
-	m_CallbackLobbyCreated.Set(result, this, &CSteam::OnCreateLobbyResponse);
+	m_CallbackLobbyCreated.Set(result, this, &CSteam::OnLobbyCreated);
 
 	return true;
 }
