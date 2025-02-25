@@ -233,7 +233,7 @@ public:
     bool DismissFloatingGamepadTextInput();
 
 	// matchmaking
-	void CreateLobby(ELobbyType eLobbyType, int cMaxMembers);
+	bool CreateLobby(ELobbyType eLobbyType, int cMaxMembers);
 	uint64 GetCurrentLobbySteamID();
 
 	
@@ -247,7 +247,7 @@ private:
 	// Our current appId
 	uint32 m_iAppID;
 	// Our current Steam Lobby ID
-	uint64 m_iSteamIDLobby
+	uint64 m_iSteamIDLobby;
 	bool m_bInitialized;
 
 	// the most recently received *Result
@@ -383,7 +383,7 @@ private:
 	               m_CallbackMicroTxnAuthorizationResponse);
 
 	// Match Making
-	STEAM_CALLRESULT(CSteam, OnLobbyCreated, LobbyCreated_t, m_CallbackLobbyCreated)
+	STEAM_CALLRESULT(CSteam, OnLobbyCreated, LobbyCreated_t, m_CallbackLobbyCreated);
 
 #undef STEAM_CALLRESULT
 

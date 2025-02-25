@@ -20,6 +20,7 @@ package {
 
 	import com.amanitadesign.steam.FriendConstants;
 	import com.amanitadesign.steam.SteamConstants;
+	import com.amanitadesign.steam.SteamLobbyType;
 	import com.amanitadesign.steam.UserConstants;
 	import com.amanitadesign.steam.UserStatsConstants;
 	import com.amanitadesign.steam.UtilsConstants;
@@ -192,6 +193,7 @@ package {
 				log("getEnv('HopefullyNotSet') == " + Steamworks.getEnv('HopefullyNotSet'));
 				log("setEnv('HopefullyNotSet', 'foobar') == " + Steamworks.setEnv('HopefullyNotSet', 'foobar'));
 				log("getEnv('HopefullyNotSet') == " + Steamworks.getEnv('HopefullyNotSet'));
+				log("createLobby()"+Steamworks.createLobby(SteamLobbyType.PUBLIC,4))
 
 				var quota:Array = Steamworks.getQuota();
 				log("getQuota() == " + (quota ? "[" + quota.join(", ") + "]" : "null"));
@@ -438,7 +440,7 @@ package {
 			if(!Steamworks.isReady) return;
 
 			authTicket = new ByteArray();
-			authHandle = Steamworks.getAuthSessionTicket(authTicket)
+			authHandle = Steamworks.getAuthSessionTicket(authTicket, Steamworks.getUserID())
 			log("getAuthSessionTicket(ticket) == " + authHandle);
 			logTicket(authTicket, "authTicket");
 		}
@@ -708,6 +710,10 @@ package {
 					break;
 				case SteamConstants.RESPONSE_OnGlobalStatsReceived:
 					log("RESPONSE_OnGlobalStatsReceived: " + e.response);
+					break;
+				case SteamConstants.RESPONSE_OnLobbyCreated:
+					log("RESPONSE_OnLobbyCreated: " + e.response);
+					log("Lobby SteamID: " + Steamworks.getCurrentLobbySteamID())
 					break;
 				case SteamConstants.RESPONSE_OnFindLeaderboard:
 					log("RESPONSE_OnFindLeaderboad: " + e.response);

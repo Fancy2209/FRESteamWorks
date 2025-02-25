@@ -1918,13 +1918,18 @@ AIR_FUNC(AIRSteam_DismissFloatingGamepadTextInput) {
 
 // matchmaking
 AIR_FUNC(AIRSteam_CreateLobby) {
-	ARG_CHECK(2, FREBool(false))
-	return true;
+	ARG_CHECK(2, FREBool(false));
+	uint32 eLobbyType;
+	int cMaxMembers;
+	FREGetUint32(argv[0], &eLobbyType);
+	FREGetInt32(argv[1], &cMaxMembers);
+	g_Steam->CreateLobby((ELobbyType)eLobbyType, cMaxMembers);
+	return FREBool(true);
 }
 
 AIR_FUNC(AIRSteam_GetCurrentLobbySteamID) {
-	ARG_CHECK(0, FREUint64(0))
-	return FREGetUint64(g_Steam->GetCurrentLobbySteamID())
+	ARG_CHECK(0, FREUint64(0));
+	return FREUint64(g_Steam->GetCurrentLobbySteamID());
 }
 
 	//============================
