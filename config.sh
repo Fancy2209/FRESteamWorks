@@ -15,7 +15,7 @@ fi
 # Path to the Steam SDK, so that $STEAM_SDK/redistributable_bin exists.
 if [[ ! -v STEAM_SDK ]]; then 
     STEAM_SDK="${HOME}/SDKS/SteamSDK"
-if
+fi
 # FTP path to upload the built binaries to when running builds/build.sh.
 # Version number gets appended to the path. Binaries will not be uploaded
 # if left commented or set to an empty value.
