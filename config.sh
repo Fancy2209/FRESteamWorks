@@ -4,16 +4,16 @@
 # be used in the Makefile.
 
 # Path to the main AIR SDK directory, so that $AIR_SDK/bin/adt exists.
-if [[ -n "$AIR_SDK" ]]; then 
+if [[ -z "$AIR_SDK" ]]; then 
     AIR_SDK="${HOME}/SDKS/AIRSDK"
 fi
 # Path to the Flex SDK, so that $FLEX_SDK/bin/compc exists.
 # Might be identical to AIR_SDK if you use an overlayed SDK.
-if [[ -n "$FLEX_SDK" ]]; then 
+if [[ -z "$FLEX_SDK" ]]; then 
     FLEX_SDK="${HOME}/SDKS/AIRSDK"
 fi
 # Path to the Steam SDK, so that $STEAM_SDK/redistributable_bin exists.
-if [[ -n "$STEAM_SDK" ]]; then 
+if [[ -z "$STEAM_SDK" ]]; then 
     STEAM_SDK="${HOME}/SDKS/SteamSDK"
 fi
 # FTP path to upload the built binaries to when running builds/build.sh.

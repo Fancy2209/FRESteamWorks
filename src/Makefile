@@ -1,5 +1,3 @@
-include ../config.sh
-
 CXXFLAGS = -std=c++0x -fvisibility=hidden -I.
 CXXFLAGS += -Wall -Wextra -pedantic -Wno-unused-parameter -Wmissing-declarations
 CXXFLAGS += -Wconversion -Wcast-qual -Wno-sign-conversion
@@ -55,7 +53,7 @@ dist-clean: clean
 # Rules
 # Output objects
 FRESteamWorks/FRESteamWorks.so: $(obj)
-	$(CXX) -shared $^ $(LDFLAGS) -o $@
+	../config.sh && $(CXX) -shared $^ $(LDFLAGS) -o $@
 
 APIWrapper/APIWrapper: $(wrapperobj) $(amf)
 	$(CXX) $^ $(LDFLAGS) -o $@
