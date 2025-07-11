@@ -46,9 +46,13 @@ jobs:
         run: |
           mkdir SteamSDK/public
           xcopy SteamSDK/steam SteamSDK/public
+          mkdir C:\SDKs\
+          xcopy SteamSDK C:\SDKs\
+          xcopy $env:AIR_HOME C:\SDKs\AIRSDK
           $env:AIR_SDK = $env:AIR_HOME
           $env:FLEX_SDK = $env:AIR_HOME
           $env:STEAM_SDK = Join-Path $env:GITHUB_WORKSPACE 'SteamSDK'
+          
           msbuild src/FRESteamWorks.sln /p:Platform=x64 /p:Configuration=Release
           msbuild src/FRESteamWorks.sln /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
