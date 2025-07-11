@@ -68,7 +68,7 @@ jobs:
       - name: Build
         if: runner.os == 'Linux'
         run: |
-          mkidr SteamSDK/public
+          mkdir SteamSDK/public
           cp -r SteamSDK/steam SteamSDK/public
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
