@@ -54,12 +54,12 @@ jobs:
           cd lib/bin
           xcopy ..\..\src\Release\FRESteamWorks.dll .
           xcopy ..\..\src\Release\FRESteamWorks-64.dll .
-          acompc" +configname=air -source-path ..\src ^
+          acompc +configname=air -source-path ..\src ^
                              -debug=false -optimize ^
                              -include-sources ..\src\ ^
                              -swf-version=11 -output FRESteamWorksLib.swc
           7z x FRESteamWorksLib.swc
-          adt" -package -target ane FRESteamWorks.ane descriptor.xml ^
+          adt -package -target ane FRESteamWorks.ane descriptor.xml ^
                          -swc FRESteamWorksLib.swc ^
                          -platform Windows-x86 library.swf FRESteamWorks.dll ^
                          -platform Windows-x86-64 library.swf FRESteamWorks-64.dll
@@ -78,12 +78,14 @@ jobs:
           make -j${nproc}
           cd ../lib/bin
           cp ../../src/FRESteamWorks/FRESteamWorks.so .
-          acompc" +configname=air -source-path ..\src \
+          acompc +configname=air -source-path ..\src \
                                -debug=false -optimize \
                                -include-sources ..\src\ \
                                -swf-version=11 -output FRESteamWorksLib.swc
+                    
           7z x FRESteamWorksLib.swc
-          adt" -package -target ane FRESteamWorks.ane descriptor.xml \
+
+          adt -package -target ane FRESteamWorks.ane descriptor.xml \
                              -swc FRESteamWorksLib.swc \
                              -platform Linux-x86-64 library.swf FRESteamWorks.so \
                              -platform default library.swf
