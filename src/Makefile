@@ -53,7 +53,7 @@ dist-clean: clean
 # Rules
 # Output objects
 FRESteamWorks/FRESteamWorks.so: $(obj)
-	../config.sh && $(CXX) -shared $^ $(LDFLAGS) -o $@
+	chmod +x ../config.sh && ../config.sh && $(CXX) -shared $^ $(LDFLAGS) -o $@
 
 APIWrapper/APIWrapper: $(wrapperobj) $(amf)
 	$(CXX) $^ $(LDFLAGS) -o $@
