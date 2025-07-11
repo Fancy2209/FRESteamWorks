@@ -44,20 +44,20 @@ jobs:
       - name: Build (Windows)
         if: runner.os == 'Windows'
         run: |
-          mkdir SteamSDK\public
-          xcopy SteamSDK\steam SteamSDK\public
-          set "AIR_SDK=%AIR_HOME%"
-          set "FLEX_SDK=%AIR_HOME%"
-          set "STEAM_SDK=%GITHUB_WORKSPACE%\SteamSDK"
-          msbuild src/FRESteamWorks.sln /p:Platform=x64 /p:Configuration=Release
-          msbuild src/FRESteamWorks.sln /p:Platform=Win32 /p:Configuration=Release
+          mkdir SteamSDK/public
+          xcopy SteamSDK/steam SteamSDK/public
+          $env:AIR_SDK = $env:AIR_HOME
+          $env:FLEX_SDK = $env:AIR_HOME
+          $env:STEAM_SDK = Join-Path $env:GITHUB_WORKSPACE 'SteamSDK'
+          msbuild src/FRESteamWorks.sln -verbosity:diag /p:Platform=x64 /p:Configuration=Release
+          msbuild src/FRESteamWorks.sln -verbosity:diag /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
-          xcopy ..\..\src\Release\FRESteamWorks.dll .
-          xcopy ..\..\src\Release\FRESteamWorks-64.dll .
+          xcopy ../../src/Release/FRESteamWorks.dll .
+          xcopy ../../src/Release/FRESteamWorks-64.dll .
           mkdir FRESteamWorks.framework
           echo "" >> FRESteamWorks.framework/FRESteamWorks
           echo "" >> FRESteamWorks.so
-          acompc +configname=air -source-path ..\src -debug=false -optimize -include-sources ..\src\ -swf-version=11 -output FRESteamWorksLib.swc
+          acompc +configname=air -source-path ../src -debug=false -optimize -include-sources ..\src\ -swf-version=11 -output FRESteamWorksLib.swc
           7z x FRESteamWorksLib.swc
           adt -package -target ane FRESteamWorks.ane descriptor.xml -swc FRESteamWorksLib.swc -platform Windows-x86 library.swf FRESteamWorks.dll -platform Windows-x86-64 library.swf FRESteamWorks-64.dll -platform MacOS-x86-64 library.swf FRESteamWorks.framework -platform Linux-x86-64 library.swf FRESteamWorks.so -platform default library.swf
 
