@@ -88,9 +88,9 @@ jobs:
                                -swf-version=11 -output FRESteamWorksLib.swc
                     
           7z x FRESteamWorksLib.swc
-          touch FRESteamworks-64.dll
-          touch FRESteamworks.dll
-          touch FRESteamworks.framework
+          touch FRESteamWorks-64.dll
+          touch FRESteamWorks.dll
+          touch FRESteamWorks.framework
           adt -package -target ane FRESteamWorks.ane descriptor.xml \
                              -swc FRESteamWorksLib.swc \
                              -platform Windows-x86 library.swf FRESteamWorks.dll \
