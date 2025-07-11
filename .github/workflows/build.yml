@@ -110,9 +110,9 @@ jobs:
           export FLEX_SDK=$AIR_HOME
           export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
           
-          touch build/bin/FRESteamworks-64.dll
-          touch build/bin/FRESteamworks.dll
-          touch build/bin/FRESteamworks.so
+          touch lib/bin/FRESteamworks-64.dll
+          touch lib/bin/FRESteamworks.dll
+          touch lib/bin/FRESteamworks.so
           cd src
           xcodebuild -project FRESteamWorks.xcodeproj
 
