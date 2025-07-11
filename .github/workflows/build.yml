@@ -46,7 +46,7 @@ jobs:
         run: |
           set "AIR_SDK=%AIR_HOME%"
           set "FLEX_SDK=%AIR_HOME%"
-          set "STEAM_SDK=%cd%\SteamSDK"
+          set "STEAM_SDK=%GITHUB_WORKSPACE%\SteamSDK"
           msbuild src/FRESteamWorks.csproj /p:Platform=x64 /p:Configuration=Release
           msbuild src/FRESteamWorks.csproj /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
@@ -68,7 +68,7 @@ jobs:
         run: |
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
-          export STEAM_SDK=$PWD/SteamSDK
+          export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
           
           cd src
           make -j${nproc}
@@ -89,7 +89,7 @@ jobs:
         run: |
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
-          export STEAM_SDK=$PWD/SteamSDK
+          export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
           
           touch build/bin/FRESteamworks-64.dll
           touch build/bin/FRESteamworks.dll
