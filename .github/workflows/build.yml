@@ -54,7 +54,8 @@ jobs:
           cd lib/bin
           xcopy ..\..\src\Release\FRESteamWorks.dll .
           xcopy ..\..\src\Release\FRESteamWorks-64.dll .
-          echo "" >> FRESteamWorks.framework
+          mkdir FRESteamWorks.framework
+          echo "" >> FRESteamWorks.framework/FRESteamWorks
           echo "" >> FRESteamWorks.so
           acompc +configname=air -source-path ..\src ^
                              -debug=false -optimize ^
@@ -90,7 +91,8 @@ jobs:
           7z x FRESteamWorksLib.swc
           touch FRESteamWorks-64.dll
           touch FRESteamWorks.dll
-          touch FRESteamWorks.framework
+          mkdir FRESteamWorks.framework
+          touch FRESteamWorks.framework/FRESteamWorks
           adt -package -target ane FRESteamWorks.ane descriptor.xml \
                              -swc FRESteamWorksLib.swc \
                              -platform Windows-x86 library.swf FRESteamWorks.dll \
