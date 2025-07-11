@@ -45,10 +45,10 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           mkdir SteamSDK/public
-          xcopy SteamSDK/steam SteamSDK/public
+          cp -Recurse -Force SteamSDK/steam SteamSDK/public
           mkdir C:\SDKs\
-          xcopy SteamSDK C:\SDKs\
-          xcopy $env:AIR_HOME C:\SDKs\AIRSDK
+          cp -Recurse -Force SteamSDK C:\SDKs\
+          cp $env:AIR_HOME "C:\SDKs\AIRSDK" -Recurse -Force
           $env:AIR_SDK = $env:AIR_HOME
           $env:FLEX_SDK = $env:AIR_HOME
           $env:STEAM_SDK = Join-Path $env:GITHUB_WORKSPACE 'SteamSDK'
@@ -56,8 +56,8 @@ jobs:
           msbuild src/FRESteamWorks.sln /p:Platform=x64 /p:Configuration=Release
           msbuild src/FRESteamWorks.sln /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
-          xcopy ../../src/Release/FRESteamWorks.dll .
-          xcopy ../../src/Release/FRESteamWorks-64.dll .
+          cp ../../src/Release/FRESteamWorks.dll .
+          cp ../../src/Release/FRESteamWorks-64.dll .
           mkdir FRESteamWorks.framework
           echo "" >> FRESteamWorks.framework/FRESteamWorks
           echo "" >> FRESteamWorks.so
