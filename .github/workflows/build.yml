@@ -44,13 +44,14 @@ jobs:
       - name: Build
         if: runner.os == 'Windows'
         run: |
+          set "AIR_SDK=%AIR_HOME%"
+          set "FLEX_SDK=%AIR_HOME%"
+          set "STEAM_SDK=%cd%\SteamSDK"
           msbuild src/FRESteamWorks.csproj /p:Platform=x64 /p:Configuration=Release
           msbuild src/FRESteamWorks.csproj /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
           xcopy ..\..\src\Release\FRESteamWorks.dll .
           xcopy ..\..\src\Release\FRESteamWorks-64.dll .
-          echo "" >> FRESteamWorks.framework
-          echo "" >> FRESteamWorks.so
           "%AIR_HOME%\bin\acompc" +configname=air -source-path ..\src ^
                              -debug=false -optimize ^
                              -include-sources ..\src\ ^
@@ -65,13 +66,14 @@ jobs:
       - name: Build
         if: runner.os == 'Linux'
         run: |
+          export AIR_SDK=$AIR_HOME
+          export FLEX_SDK=$AIR_HOME
+          export STEAM_SDK=$PWD/SteamSDK
+          
           cd src
           make -j${nproc}
           cd ../lib/bin
           cp ../../src/FRESteamWorks/FRESteamWorks.so .
-          touch FRESteamworks.dll
-          touch FRESteamworks-64.dll
-          touch FRESteamworks.framework
           $AIR_HOME\bin\acompc" +configname=air -source-path ..\src \
                                -debug=false -optimize \
                                -include-sources ..\src\ \
@@ -85,6 +87,10 @@ jobs:
       - name: Build
         if: runner.os == 'macOS'
         run: |
+          export AIR_SDK=$AIR_HOME
+          export FLEX_SDK=$AIR_HOME
+          export STEAM_SDK=$PWD/SteamSDK
+          
           touch build/bin/FRESteamworks-64.dll
           touch build/bin/FRESteamworks.dll
           touch build/bin/FRESteamworks.so
