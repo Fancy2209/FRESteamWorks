@@ -1,0 +1,99 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master, Actions ]
+  pull_request:
+    branches: [ master, Actions ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows, ubuntu, macos]
+    
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download SteamWorks SDK
+        uses: actions/checkout@v4
+        with:
+          repository: flibitijibibo/steamworks-sdk
+          ref: 1.61
+          path: SteamSDK
+
+      - name: Setup AIR SDK
+        uses: joshtynjala/setup-adobe-air-action@v2
+        with:
+          air-version: 51.1
+          accept-license: true
+
+      - name: Add msbuild to PATH # MSBuild is needed to build Visual Studio Projects on the CLI
+        if: runner.os == 'Windows'
+        uses: microsoft/setup-msbuild@v2
+        
+      - name: Build
+        if: runner.os == 'Windows'
+        run: |
+          msbuild src/FRESteamWorks.csproj /p:Platform=x64 /p:Configuration=Release
+          msbuild src/FRESteamWorks.csproj /p:Platform=Win32 /p:Configuration=Release
+          cd lib/bin
+          xcopy ..\..\src\Release\FRESteamWorks.dll .
+          xcopy ..\..\src\Release\FRESteamWorks-64.dll .
+          echo "" >> FRESteamWorks.framework
+          echo "" >> FRESteamWorks.so
+          "%AIR_HOME%\bin\acompc" +configname=air -source-path ..\src ^
+                             -debug=false -optimize ^
+                             -include-sources ..\src\ ^
+                             -swf-version=11 -output FRESteamWorksLib.swc
+          7z x FRESteamWorksLib.swc
+          "%AIR_HOME%\bin\adt" -package -target ane FRESteamWorks.ane descriptor.xml ^
+                         -swc FRESteamWorksLib.swc ^
+                         -platform Windows-x86 library.swf FRESteamWorks.dll ^
+                         -platform Windows-x86-64 library.swf FRESteamWorks-64.dll
+                         -platform default library.swf
+
+      - name: Build
+        if: runner.os == 'Linux'
+        run: |
+          cd src
+          make -j${nproc}
+          cd ../lib/bin
+          cp ../../src/FRESteamWorks/FRESteamWorks.so .
+          touch FRESteamworks.dll
+          touch FRESteamworks-64.dll
+          touch FRESteamworks.framework
+          $AIR_HOME\bin\acompc" +configname=air -source-path ..\src \
+                               -debug=false -optimize \
+                               -include-sources ..\src\ \
+                               -swf-version=11 -output FRESteamWorksLib.swc
+          7z x FRESteamWorksLib.swc
+          $AIR_HOME\bin\adt" -package -target ane FRESteamWorks.ane descriptor.xml \
+                             -swc FRESteamWorksLib.swc \
+                             -platform Linux-x86-64 library.swf FRESteamWorks.so \
+                             -platform default library.swf
+      
+      - name: Build
+        if: runner.os == 'macOS'
+        run: |
+          touch build/binFRESteamworks-64.dll
+          touch build/binFRESteamworks.dll
+          touch build/binFRESteamworks.so
+          cd src
+          xcodebuild -project FRESteamWorks.xcodeproj
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FRESteamWorks-${{runner.os}}
+          path: lib/bin/FRESteamWorks.ane
+          
+          
