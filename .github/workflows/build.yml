@@ -78,9 +78,9 @@ jobs:
           make -j${nproc}
           cd ../lib/bin
           cp ../../src/FRESteamWorks/FRESteamWorks.so .
-          acompc +configname=air -source-path ..\src \
+          acompc +configname=air -source-path ../src \
                                -debug=false -optimize \
-                               -include-sources ..\src\ \
+                               -include-sources ../src/ \
                                -swf-version=11 -output FRESteamWorksLib.swc
                     
           7z x FRESteamWorksLib.swc
