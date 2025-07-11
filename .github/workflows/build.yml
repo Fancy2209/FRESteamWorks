@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: flibitijibibo/steamworks-sdk
-          ref: 1.61
+          ref: dc2b9953670fc66b76bae80dfc6fd53874656e2b
           path: SteamSDK
 
       - name: Setup AIR SDK
@@ -106,7 +106,7 @@ jobs:
         run: |
           # create variables
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          PP_PATH=$RUNNER_TEMP/build_pp.provisionprofile
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
         
           # import certificate and provisioning profile from secrets
