@@ -85,9 +85,9 @@ jobs:
       - name: Build
         if: runner.os == 'macOS'
         run: |
-          touch build/binFRESteamworks-64.dll
-          touch build/binFRESteamworks.dll
-          touch build/binFRESteamworks.so
+          touch build/bin/FRESteamworks-64.dll
+          touch build/bin/FRESteamworks.dll
+          touch build/bin/FRESteamworks.so
           cd src
           xcodebuild -project FRESteamWorks.xcodeproj
 
