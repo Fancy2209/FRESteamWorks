@@ -69,8 +69,6 @@ jobs:
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
           export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
-          echo $AIR_SDK
-          echo $STEAM_SDK
           
           cd src
           make -j${nproc}
