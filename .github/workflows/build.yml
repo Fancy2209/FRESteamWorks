@@ -49,8 +49,8 @@ jobs:
           $env:AIR_SDK = $env:AIR_HOME
           $env:FLEX_SDK = $env:AIR_HOME
           $env:STEAM_SDK = Join-Path $env:GITHUB_WORKSPACE 'SteamSDK'
-          msbuild src/FRESteamWorks.sln -verbosity:diag /p:Platform=x64 /p:Configuration=Release
-          msbuild src/FRESteamWorks.sln -verbosity:diag /p:Platform=Win32 /p:Configuration=Release
+          msbuild src/FRESteamWorks.sln /p:Platform=x64 /p:Configuration=Release
+          msbuild src/FRESteamWorks.sln /p:Platform=Win32 /p:Configuration=Release
           cd lib/bin
           xcopy ../../src/Release/FRESteamWorks.dll .
           xcopy ../../src/Release/FRESteamWorks-64.dll .
