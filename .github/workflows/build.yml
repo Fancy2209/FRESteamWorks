@@ -44,6 +44,8 @@ jobs:
       - name: Build
         if: runner.os == 'Windows'
         run: |
+          mkdir SteamSDK\public
+          xcopy SteamSDK\steam SteamSDK\public
           set "AIR_SDK=%AIR_HOME%"
           set "FLEX_SDK=%AIR_HOME%"
           set "STEAM_SDK=%GITHUB_WORKSPACE%\SteamSDK"
@@ -66,6 +68,8 @@ jobs:
       - name: Build
         if: runner.os == 'Linux'
         run: |
+          mkidr SteamSDK/public
+          cp -r SteamSDK/steam SteamSDK/public
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
           export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
@@ -87,6 +91,8 @@ jobs:
       - name: Build
         if: runner.os == 'macOS'
         run: |
+          mkdir SteamSDK/public
+          cp -r SteamSDK/steam SteamSDK/public
           export AIR_SDK=$AIR_HOME
           export FLEX_SDK=$AIR_HOME
           export STEAM_SDK=$GITHUB_WORKSPACE/SteamSDK
