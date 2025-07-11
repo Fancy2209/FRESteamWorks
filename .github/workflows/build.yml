@@ -54,6 +54,8 @@ jobs:
           cd lib/bin
           xcopy ..\..\src\Release\FRESteamWorks.dll .
           xcopy ..\..\src\Release\FRESteamWorks-64.dll .
+          echo "" >> FRESteamWorks.framework
+          echo "" >> FRESteamWorks.so
           acompc +configname=air -source-path ..\src ^
                              -debug=false -optimize ^
                              -include-sources ..\src\ ^
@@ -62,7 +64,9 @@ jobs:
           adt -package -target ane FRESteamWorks.ane descriptor.xml ^
                          -swc FRESteamWorksLib.swc ^
                          -platform Windows-x86 library.swf FRESteamWorks.dll ^
-                         -platform Windows-x86-64 library.swf FRESteamWorks-64.dll
+                         -platform Windows-x86-64 library.swf FRESteamWorks-64.dll ^
+                         -platform MacOS-x86-64 library.swf FRESteamWorks.framework ^
+                         -platform Linux-x86-64 library.swf FRESteamWorks.so ^
                          -platform default library.swf
 
       - name: Build (Linux)
@@ -84,9 +88,14 @@ jobs:
                                -swf-version=11 -output FRESteamWorksLib.swc
                     
           7z x FRESteamWorksLib.swc
-
+          touch build/bin/FRESteamworks-64.dll
+          touch build/bin/FRESteamworks.dll
+          touch build/bin/FRESteamworks.framework
           adt -package -target ane FRESteamWorks.ane descriptor.xml \
                              -swc FRESteamWorksLib.swc \
+                             -platform Windows-x86 library.swf FRESteamWorks.dll \
+                             -platform Windows-x86-64 library.swf FRESteamWorks-64.dll \
+                             -platform MacOS-x86-64 library.swf FRESteamWorks.framework \
                              -platform Linux-x86-64 library.swf FRESteamWorks.so \
                              -platform default library.swf
       
