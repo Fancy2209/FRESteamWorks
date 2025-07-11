@@ -13,7 +13,7 @@ ifeq ($(shell uname), Darwin)
 	LDFLAGS += $(AIR_SDK)/runtimes/air/mac/Adobe\ AIR.framework/Versions/1.0/Adobe\ AIR_64
 	AMF_CPP_ARCH =
 else
-	CXXFLAGS += -m64 -DLINUX
+	CXXFLAGS += -m64 -DLINUX -I$(AIR_SDK)/include
 	LDFLAGS += -m64 -L$(STEAM_SDK)/redistributable_bin/linux64 -L$(AIR_SDK)/lib -l:FlashRuntimeExtensions.so -Wl,-rpath=. -Wl,-rpath=Adobe\ AIR/Versions/1.0
 	AMF_CPP_ARCH = 64bit
 endif
