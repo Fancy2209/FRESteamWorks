@@ -1015,9 +1015,9 @@ public function getLobbyOwner(steamIDLobby:String):String
 /* Networking (Messages) */
 /*************************/
 
-// getSteamNetworkingMessagesSessionRequestRemoteID()
+// getSessionRequestRemoteID()
 // @default "0"
-public function getSteamNetworkingMessagesSessionRequestRemoteID():String
+public function getSessionRequestRemoteID():String
 
 // acceptSessionWithUser(identityRemote)
 // @default false

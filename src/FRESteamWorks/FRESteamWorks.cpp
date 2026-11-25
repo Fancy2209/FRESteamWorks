@@ -2091,11 +2091,11 @@ AIR_FUNC(AIRSteam_GetLobbyOwner)
 /*
  * Networking (Messages)
  */
-AIR_FUNC(AIRSteam_GetSteamNetworkingMessagesSessionRequestRemoteID)
+AIR_FUNC(AIRSteam_GetSessionRequestRemoteID)
 {
 	ARG_CHECK(0, FREUint64(0));
 	SteamNetworkingIdentity netID;
-	bool result = g_Steam->GetSteamNetworkingMessagesSessionRequestRemoteID(&netID);
+	bool result = g_Steam->GetSessionRequestRemoteID(&netID);
 	return FREUint64(result ? netID.GetSteamID64() : 0);
 }
 
@@ -2172,8 +2172,9 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			SteamNetworkingMessage_t *msg = ppOutMessages[i];
 
 			FREByteArray msgByteArray;
-			memcpy(msgByteArray.bytes, msg->m_pData, msg->m_cbSize);
+			msgByteArray = malloc(msg->m_cbSize);
 			msgByteArray.length = msg->m_cbSize;
+			memcpy(msgByteArray.bytes, msg->m_pData, msg->m_cbSize);
 
 			FREObject msgByteArrayObj;
 			FRENewByteArray(&msgByteArray, &msgByteArrayObj);

@@ -235,7 +235,7 @@ package com.amanitadesign.steam {
 		/*************************/
 		/* Networking (Messages) */
 		/*************************/
-		function getSteamNetworkingMessagesSessionRequestRemoteID():String
+		function getSessionRequestRemoteID():String
 		function acceptSessionWithUser(identityRemote:String):Boolean
 		function closeSessionWithUser(identityRemote:String):Boolean
 		function sendMessageToUser(identityRemote:String, data:ByteArray, sendFlags:int, remoteChannel:int):int

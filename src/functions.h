@@ -202,7 +202,7 @@ X(AIRSteam_GetLobbyOwner) /* = 162 */
 /*************************/
 /* Networking (Messages) */
 /*************************/
-X(AIRSteam_GetSteamNetworkingMessagesSessionRequestRemoteID) /* = 164 */
+X(AIRSteam_GetSessionRequestRemoteID) /* = 164 */
 X(AIRSteam_AcceptSessionWithUser) /* = 165 */
 X(AIRSteam_CloseSessionWithUser) /* = 166 */
 X(AIRSteam_SendMessageToUser) /* = 167 */

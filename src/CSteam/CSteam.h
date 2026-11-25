@@ -248,7 +248,7 @@ public:
 	CSteamID GetLobbyOwner(CSteamID steamIDLobby);
 
 	// Networking (Messages)
-	bool GetSteamNetworkingMessagesSessionRequestRemoteID(SteamNetworkingIdentity *out);
+	bool GetSessionRequestRemoteID(SteamNetworkingIdentity *out);
 	bool AcceptSessionWithUser(const SteamNetworkingIdentity &identityRemote);
 	bool CloseSessionWithUser(const SteamNetworkingIdentity &identityRemote);
 	EResult SendMessageToUser(const SteamNetworkingIdentity &identityRemote, const void *pubData, uint32 cubData, int nSendFlags, int nRemoteChannel);

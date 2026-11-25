@@ -816,8 +816,8 @@ package com.amanitadesign.steam {
 		/*************************/
 		/* Networking (Messages) */
 		/*************************/
-		public function getSteamNetworkingMessagesSessionRequestRemoteID():String {
-			return _ExtensionContext.call("AIRSteam_GetSteamNetworkingMessagesSessionRequestRemoteID") as String;
+		public function getSessionRequestRemoteID():String {
+			return _ExtensionContext.call("AIRSteam_GetSessionRequestRemoteID") as String;
 		}
 
 		public function acceptSessionWithUser(identityRemote:String):Boolean {

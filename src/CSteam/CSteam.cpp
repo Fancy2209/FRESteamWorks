@@ -1201,7 +1201,7 @@ bool CSteam::LobbyChatUpdateResult(LobbyChatUpdate_t* out) {
 }
 
 // Networking (Messages)
-bool CSteam::GetSteamNetworkingMessagesSessionRequestRemoteID(SteamNetworkingIdentity *out)
+bool CSteam::GetSessionRequestRemoteID(SteamNetworkingIdentity *out)
 {
 	if (!m_iSteamNetworkingMessagesCurrentRemoteIdentitys.empty()) {
 		*out = m_iSteamNetworkingMessagesCurrentRemoteIdentitys.front();
@@ -1443,8 +1443,8 @@ void CSteam::OnLobbyEntered(LobbyEnter_t *pCallback) {
 void CSteam::OnLobbyEntered(LobbyEnter_t *pCallback, bool failure) {
 	if(pCallback->m_EChatRoomEnterResponse == k_EChatRoomEnterResponseSuccess)
 	{
-		DispatchEvent(RESPONSE_OnLobbyEntered, k_EResultOK);
 		m_iCurrentLobbyId = pCallback->m_ulSteamIDLobby;
+		DispatchEvent(RESPONSE_OnLobbyEntered, k_EResultOK);
 	} else {
 		DispatchEvent(RESPONSE_OnLobbyEntered, k_EResultFail);
 	}
