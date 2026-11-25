@@ -2181,7 +2181,7 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			SteamNetworkingMessage_t *msg = ppOutMessages[i];
 
 			FREByteArray msgByteArray;
-			msgByteArray = malloc(msg->m_cbSize);
+			msgByteArray.bytes = malloc(msg->m_cbSize);
 			msgByteArray.length = msg->m_cbSize;
 			memcpy(msgByteArray.bytes, msg->m_pData, msg->m_cbSize);
 
