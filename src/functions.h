@@ -213,4 +213,5 @@ X(AIRSteam_CloseChannelWithUser) /* = 169 */
 /**********************************/
 X(AIRSteam_GetEnv) /* = 170 */
 X(AIRSteam_SetEnv) /* = 171 */
+X(AIRSteam_GetLaunchQueryParam) /* = 171 */
 /* END GENERATED CODE */

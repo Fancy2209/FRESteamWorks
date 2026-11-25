@@ -37,6 +37,7 @@ CSteam::CSteam():
 	m_CallbackGetAuthSessionTicketResponse(this, &CSteam::OnGetAuthSessionTicketResponse),
 	m_OnValidateAuthTicketResponse(this, &CSteam::OnValidateAuthTicketResponse),
 	m_CallbackGameOverlayActivated(this, &CSteam::OnGameOverlayActivated),
+	m_CallbackNewUrlLaunchParameters(this, &CSteam::OnNewUrlLaunchParameters),
 	m_CallbackDLCInstalled(this, &CSteam::OnDLCInstalled),
 	m_CallbackMicroTxnAuthorizationResponse(this, &CSteam::OnMicroTxnAuthorizationResponse),
 	m_CallbackLobbyEntered(this, &CSteam::OnLobbyEntered),
@@ -105,6 +106,14 @@ std::string CSteam::GetCurrentGameLanguage() {
 	if (!m_bInitialized) return "";
 
 	return std::string(SteamApps()->GetCurrentGameLanguage());
+}
+
+std::string CSteam::GetLaunchQueryParam(std::string key) {
+	if (!m_bInitialized) return "";
+	if (key.empty()) return "";
+
+	const char* value = SteamApps()->GetLaunchQueryParam(key.c_str());
+	return value ? std::string(value) : std::string("");
 }
 
 std::string CSteam::GetPersonaName() {
@@ -1400,6 +1409,10 @@ void CSteam::OnSetUserPublishedFileAction(RemoteStorageSetUserPublishedFileActio
 
 void CSteam::OnGameOverlayActivated(GameOverlayActivated_t *pCallback) {
 	DispatchEvent(RESPONSE_OnGameOverlayActivated, pCallback->m_bActive ? k_EResultOK : k_EResultFail);
+}
+
+void CSteam::OnNewUrlLaunchParameters(NewUrlLaunchParameters_t *pCallback) {
+	DispatchEvent(RESPONSE_OnNewUrlLaunchParameters, k_EResultOK);
 }
 
 void CSteam::OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t *pCallback) {

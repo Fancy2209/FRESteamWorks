@@ -38,6 +38,7 @@ public:
 	uint32 GetAppID();
 	std::string GetAvailableGameLanguages();
 	std::string GetCurrentGameLanguage();
+	std::string GetLaunchQueryParam(std::string key);
 	std::string GetPersonaName();
 	std::string GetIPCountry();
 
@@ -392,6 +393,10 @@ private:
 	// overlay
 	STEAM_CALLBACK(CSteam, OnGameOverlayActivated, GameOverlayActivated_t,
 	               m_CallbackGameOverlayActivated);
+
+	// launch params (warm relaunch via steam://run/?...)
+	STEAM_CALLBACK(CSteam, OnNewUrlLaunchParameters, NewUrlLaunchParameters_t,
+	               m_CallbackNewUrlLaunchParameters);
 
 	// DLC / subscription
 	STEAM_CALLBACK(CSteam, OnDLCInstalled, DlcInstalled_t,
