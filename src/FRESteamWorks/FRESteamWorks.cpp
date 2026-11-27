@@ -2225,6 +2225,9 @@ AIR_FUNC(AIRSteam_CloseChannelWithUser)
 	return FREBool(g_Steam->CloseChannelWithUser(netID, nLocalChannel));
 }
 
+/*
+ * Networking (Utils)
+ */
 AIR_FUNC(AIRSteam_GetLocalTimestamp)
 {
 	return FREInt64(g_Steam->GetLocalTimestamp());

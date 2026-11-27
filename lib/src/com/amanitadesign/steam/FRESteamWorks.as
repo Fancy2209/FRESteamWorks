@@ -840,6 +840,9 @@ package com.amanitadesign.steam {
 			return _ExtensionContext.call("AIRSteam_CloseChannelWithUser", identityRemote, localChannel) as Boolean;
 		}
 
+		/**********************/
+		/* Networking (Utils) */
+		/**********************/
 		public function getLocalTimestamp():String {
 			return _ExtensionContext.call("AIRSteam_GetLocalTimestamp") as String;
 		}

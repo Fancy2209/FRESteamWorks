@@ -208,6 +208,9 @@ X(AIRSteam_CloseSessionWithUser) /* = 165 */
 X(AIRSteam_SendMessageToUser) /* = 166 */
 X(AIRSteam_ReceiveMessagesOnChannel) /* = 167 */
 X(AIRSteam_CloseChannelWithUser) /* = 168 */
+/**********************/
+/* Networking (Utils) */
+/**********************/
 X(AIRSteam_GetLocalTimestamp) /* = 169 */
 /**********************************/
 /* Other non-Steamworks functions */
