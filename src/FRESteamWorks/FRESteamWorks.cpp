@@ -2187,7 +2187,7 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			FREObject msgByteArrayObj;
 			FRENewByteArray(&msgByteArray, &msgByteArrayObj);
 
-			// For some reason position isn't at 0 after FRENewByteArray
+			// For some reason position isn't at 0 after 
 			SET_PROP(msgByteArrayObj, "position", FREUint(0));
 
 			FREObject currMsgFreObj; 
@@ -2223,6 +2223,11 @@ AIR_FUNC(AIRSteam_CloseChannelWithUser)
 	netID.SetSteamID64(steamID);
 	
 	return FREBool(g_Steam->CloseChannelWithUser(netID, nLocalChannel));
+}
+
+AIR_FUNC(AIRSteam_GetLocalTimestamp)
+{
+	return FREInt64(g_Steam->GetLocalTimestamp());
 }
 
 

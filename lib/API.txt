@@ -1039,6 +1039,10 @@ public function receiveMessagesOnChannel(localChannel:int, maxMessages:int):Vect
 // @default false
 public function closeChannelWithUser(identityRemote:String, localChannel:int):Boolean
 
+// getLocalTimestamp()
+// @default 0
+public function getLocalTimestamp():String
+
 /**********************************/
 /* Other non-Steamworks functions */
 /**********************************/

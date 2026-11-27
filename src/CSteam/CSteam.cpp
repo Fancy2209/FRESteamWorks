@@ -1247,6 +1247,11 @@ bool CSteam::CloseChannelWithUser(const SteamNetworkingIdentity &identityRemote,
 	return SteamNetworkingMessages()->CloseChannelWithUser(identityRemote, nLocalChannel);
 }
 
+SteamNetworkingMicroseconds CSteam::GetLocalTimestamp()
+{
+	return SteamNetworkingUtils()->GetLocalTimestamp();
+}
+
 
 void CSteam::DispatchEvent(const int req_type, const int response) {
 	char type[5];

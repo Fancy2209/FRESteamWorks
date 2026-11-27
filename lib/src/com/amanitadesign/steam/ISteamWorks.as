@@ -241,6 +241,7 @@ package com.amanitadesign.steam {
 		function sendMessageToUser(identityRemote:String, data:ByteArray, sendFlags:int, remoteChannel:int):int
 		function receiveMessagesOnChannel(localChannel:int, maxMessages:int):Vector.<NetworkingMessage>
 		function closeChannelWithUser(identityRemote:String, localChannel:int):Boolean
+		function getLocalTimestamp():String
 		/**********************************/
 		/* Other non-Steamworks functions */
 		/**********************************/

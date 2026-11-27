@@ -256,6 +256,9 @@ public:
 	int ReceiveMessagesOnChannel(int nLocalChannel, SteamNetworkingMessage_t **ppOutMessages, int nMaxMessages);
 	bool CloseChannelWithUser(const SteamNetworkingIdentity &identityRemote, int nLocalChannel);
 
+	// Networking (Utils)
+	SteamNetworkingMicroseconds GetLocalTimestamp();
+
 protected:
 	virtual void DispatchEvent(char* code, char* level) = 0;
 
