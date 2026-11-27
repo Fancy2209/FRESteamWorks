@@ -2139,7 +2139,6 @@ AIR_FUNC(AIRSteam_SendMessageToUser)
 	ARG_CHECK(4, FREInt(0));
 	
 	uint64 steamID;
-	FREByteArray msg;
 	int32 nSendFlags;
 	int32 nRemoteChannel;
 
@@ -2151,6 +2150,7 @@ AIR_FUNC(AIRSteam_SendMessageToUser)
 	netID.Clear();
 	netID.SetSteamID64(steamID);
 
+	FREByteArray msg;
 	FREAcquireByteArray(argv[1], &msg);
 	int result = g_Steam->SendMessageToUser(netID, msg.bytes, msg.length, nSendFlags, nRemoteChannel);
 	FREReleaseByteArray(argv[1]);
@@ -2188,14 +2188,13 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			FRENewByteArray(&msgByteArray, &msgByteArrayObj);
 
 			FREObject currMsgFreObj; 
-			FRENewObject((const uint8_t *)"com.amanitadesign.steam.NetworkingMessage", 0, NULL, &currMsgFreObj, NULL);
+			FRENewObject((const uint8_t*)"com.amanitadesign.steam.NetworkingMessage", 0, NULL, &currMsgFreObj, NULL);
 			SET_PROP(currMsgFreObj, "payload", msgByteArrayObj);
 			SET_PROP(currMsgFreObj, "peerSteamID", FREUint64(msg->m_identityPeer.GetSteamID64()));
 			SET_PROP(currMsgFreObj, "timeReceived", FREInt64(msg->m_usecTimeReceived));
 			SET_PROP(currMsgFreObj, "channel", FREInt(msg->m_nChannel));
+			FRESetArrayElementAt(msgVec, i, &currMsgFreObj);
 
-			FRESetArrayElementAt(&msgVec, i, &currMsgFreObj);
-			
 			msg->Release();
 		}
 		delete[] ppOutMessages;
