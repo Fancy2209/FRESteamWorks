@@ -2187,6 +2187,9 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			FREObject msgByteArrayObj;
 			FRENewByteArray(&msgByteArray, &msgByteArrayObj);
 
+			// For some reason position isn't at 0 after FRENewByteArray
+			SET_PROP(msgByteArrayObj, "position", FREUint(0));
+
 			FREObject currMsgFreObj; 
 			FRENewObject((const uint8_t*)"com.amanitadesign.steam.NetworkingMessage", 0, NULL, &currMsgFreObj, NULL);
 			SET_PROP(currMsgFreObj, "payload", msgByteArrayObj);
