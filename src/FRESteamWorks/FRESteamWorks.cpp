@@ -2193,7 +2193,7 @@ AIR_FUNC(AIRSteam_ReceiveMessagesOnChannel)
 			SET_PROP(currMsgFreObj, "peerSteamID", FREUint64(msg->m_identityPeer.GetSteamID64()));
 			SET_PROP(currMsgFreObj, "timeReceived", FREInt64(msg->m_usecTimeReceived));
 			SET_PROP(currMsgFreObj, "channel", FREInt(msg->m_nChannel));
-			FRESetArrayElementAt(msgVec, i, &currMsgFreObj);
+			FRESetArrayElementAt(msgVec, i, currMsgFreObj);
 
 			msg->Release();
 		}
